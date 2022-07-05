@@ -2,39 +2,78 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ToDoItem from './components/ToDoItem';
+import TrafficLight from './components/TrafficLight';
 
+const RED = 0;
+const ORANGE = 1;;
+const GREEN = 2;
 class App extends Component {
+
   constructor() {
     super();
-    this.todoItems = [
-      {
-        name: 'Thành',
-        age: 22,
-        country: 'Vietnam',
-        isComplete: true
-      },
-      {
-        name: 'Lee',
-        age: 30,
-        country: 'USA',
-      },
-      {
-        name: 'Gasperinie',
-        age: 26,
-        country: 'Brazil'
-      }
-    ];
+    this.state = {
+      currentColor: GREEN
+    };
+    setInterval(() => {
+      this.setState({
+        currentColor: this.getNextColor(this.state.currentColor)
+      });
+    }, 1000);
+  }
+  getNextColor(color) {
+    switch (color) {
+      case RED:
+        return ORANGE;
+      case ORANGE:
+        return GREEN;
+      default:
+        return RED;
+    }
   }
   render() {
+    const { currentColor } = this.state;
     return (
       <div className="App">
-        {
-          this.todoItems.map((item, index) => <ToDoItem key={index} item={item} />)
-        }
+        <TrafficLight currentColor={currentColor} />
       </div>
     );
   }
 }
+// class App extends Component {
+//   constructor() {
+//     super();
+//     this.todoItems = [
+//       {
+//         name: 'Thành',
+//         age: 22,
+//         country: 'Vietnam',
+//         isComplete: true
+//       },
+//       {
+//         name: 'Lee',
+//         age: 30,
+//         country: 'USA',
+//       },
+//       {
+//         name: 'Gasperinie',
+//         age: 26,
+//         country: 'Brazil'
+//       }
+//     ];
+//   }
+//   render() {
+//     return (
+//       <div className="App">
+//         {
+//           this.todoItems.length > 0 && this.todoItems.map((item, index) => <ToDoItem key={index} item={item} />)
+//         }
+//         {
+//           this.todoItems.length === 0 && 'Nothing here'
+//         }
+//       </div>
+//     );
+//   }
+// }
 // function App() {
 //   return (
 //     <div className="App">
