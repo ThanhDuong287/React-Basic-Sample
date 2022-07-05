@@ -5,10 +5,13 @@ class ToDoItem extends Component {
         return (
             <div className="ToDoItem">
                 <h1>
-                    Có đi chợ không nào?
+                    Name: {this.props.name}
                 </h1>
                 <p>
-                    Đi chợ đi cưng
+                    Age: {this.props.age}
+                </p>
+                <p>
+                    Country: {this.props.country}
                 </p>
             </div>
         );
