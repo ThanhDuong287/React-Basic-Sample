@@ -10,12 +10,13 @@ class App extends Component {
       {
         name: 'Thành',
         age: 22,
-        country: 'Vietnam'
+        country: 'Vietnam',
+        isComplete: true
       },
       {
         name: 'Lee',
         age: 30,
-        country: 'USA'
+        country: 'USA',
       },
       {
         name: 'Gasperinie',
@@ -28,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         {
-          this.todoItems.map((item, index) => <ToDoItem key={index} name={item.name} age={item.age} country={item.country} />)
+          this.todoItems.map((item, index) => <ToDoItem key={index} item={item} />)
         }
       </div>
     );
