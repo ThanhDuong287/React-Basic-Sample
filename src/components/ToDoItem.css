@@ -3,6 +3,11 @@
     font-weight: 300;
     font-size: 24px;
     color: #4d4d4d;
+    border-bottom: 10px;
+}
+.ToDoItem h1{
+    margin: 0;
+    padding: 10px 5px;
 }
 .ToDoItem-complete{
     text-decoration: line-through;

@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import '/Visual Studio Code/React-Base/react-basic-sample/src/components/ToDoItem.css';
 
 class ToDoItem extends Component {
     render() {
-        const { item } = this.props;
-        let className = 'ToDoItem';
-        if (item.isComplete) {
-            className += ' ToDoItem-complete';
-        }
+        const { onClick } = this.props;
+        const item = this.props.data;
         return (
-            <div className={className}>
+            <div onClick={onClick} className={classNames('ToDoItem', { 'ToDoItem-complete': item?.isCompleted })}>
                 <h1>
-                    Name: {this.props.item.name}
+                    Name: {item?.name}
                 </h1>
                 <p>
-                    Age: {this.props.item.age}
+                    Age: {item?.age}
                 </p>
                 <p>
-                    Country: {this.props.item.country}
+                    Country: {item?.country}
                 </p>
             </div>
         );
