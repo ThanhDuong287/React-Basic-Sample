@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './components/ToDoItem.css';
 import ToDoItem from './components/ToDoItem';
 import TrafficLight from './components/TrafficLight';
 
@@ -54,6 +55,7 @@ class App extends Component {
           name: 'Lee',
           age: 30,
           country: 'USA',
+          isCompleted: true
         },
         {
           name: 'Gasperinie',
