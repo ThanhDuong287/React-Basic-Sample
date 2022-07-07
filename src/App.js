@@ -4,6 +4,7 @@ import './App.css';
 import './components/ToDoItem.css';
 import ToDoItem from './components/ToDoItem';
 import TrafficLight from './components/TrafficLight';
+import tick from '../src/img/check.png';
 
 // const RED = 0;
 // const ORANGE = 1;;
@@ -44,6 +45,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      firstText: '',
       list: [
         {
           name: 'Thành',
@@ -55,7 +57,6 @@ class App extends Component {
           name: 'Lee',
           age: 30,
           country: 'USA',
-          isCompleted: true
         },
         {
           name: 'Gasperinie',
@@ -64,6 +65,8 @@ class App extends Component {
         }
       ]
     }
+    this.onKeyUp = this.onKeyUp.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
   onclickItem(item) {
     return (event) => {
@@ -80,13 +83,44 @@ class App extends Component {
         ]
       })
     }
-
-
+  }
+  randomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  onChange(event) {
+    this.setState({
+      firstText: event.target.value
+    })
+  }
+  onKeyUp(event) {
+    var randomCountryName = require("random-country-name");
+    const text = event.target.value;
+    if (event.keyCode === 13) {
+      if (!text) {
+        return;
+      }
+      console.log(text);
+      this.setState({
+        firstText: '',
+        list: [{
+          name: text,
+          age: this.randomNumberInRange(15, 60),
+          country: randomCountryName.random(),
+          isCompleted: false
+        },
+        ...this.state.list
+        ]
+      })
+    }
   }
   render() {
-    const { list } = this.state;
+    const { list, firstText } = this.state;
     return (
       <div className="App">
+        <div className="Header">
+          <img src={tick} width={32} height={32} />
+          <input type="text" placeholder='Add a new item' value={firstText} onChange={this.onChange} onKeyUp={this.onKeyUp} />
+        </div>
         {list.map((value, index) => <ToDoItem key={index} data={value} onClick={this.onclickItem(value)} />)}
 
       </div>
