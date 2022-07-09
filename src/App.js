@@ -5,6 +5,7 @@ import './components/ToDoItem.css';
 import ToDoItem from './components/ToDoItem';
 import TrafficLight from './components/TrafficLight';
 import tick from '../src/img/check.png';
+import checkPropTypes from 'prop-types';
 
 // const RED = 0;
 // const ORANGE = 1;;
@@ -127,6 +128,15 @@ class App extends Component {
     );
   }
 }
+ToDoItem.propTypes = {
+  list: checkPropTypes.shape({
+    isCompleted: checkPropTypes.bool,
+    name: checkPropTypes.string,
+    age: checkPropTypes.number,
+    country: checkPropTypes.string,
+  }),
+  onClick: checkPropTypes.func,
+};
 // function App() {
 //   return (
 //     <div className="App">
